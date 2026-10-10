@@ -1,0 +1,31 @@
+REVENDO — l'application complète, prête à mettre en ligne
+
+Contenu du dossier
+- index.html            : l'application (onglets Estimer, Bonnes affaires, Autour de moi, Retouche, Mon espace)
+- revendo-espace.html   : l'onglet « Mon espace » (articles, achats, porte-monnaie, assistant, expéditions, modèles)
+- manifest.webmanifest, icon-192.png, icon-512.png, apple-touch-icon.png : nom et logo pour l'écran d'accueil
+- logo-revendo.png      : le logo en 512 px
+
+Mise en ligne
+1. Envoie TOUT le dossier tel quel sur un hébergeur en https:// (Netlify Drop par glisser-déposer, GitHub Pages, Cloudflare Pages, ou ton nom de domaine). Garde les fichiers ensemble dans le même répertoire.
+2. Ouvre l'adresse sur ton téléphone → Partager → « Sur l'écran d'accueil ». Le logo et le nom Revendo s'affichent.
+
+Intelligence artificielle
+3. Onglet Estimer → tout en bas, « Réglages » : colle ta clé API Anthropic (console.anthropic.com → API keys) et enregistre. Elle active l'estimation par photo, les conseils photo et l'assistant de Mon espace. La clé reste dans le téléphone ; chaque appel est facturé sur ton compte API (quelques centimes). Modèle par défaut : claude-sonnet-5-5.
+
+Données
+4. Tout est enregistré dans le téléphone (pas de serveur). Dans Mon espace → Réglages, fais une sauvegarde de temps en temps ; le fichier se restaure sur n'importe quel appareil.
+5. Le bouton « Enregistrer la photo retouchée » télécharge directement le JPG.
+
+Pour vendre l'application à d'autres : ne partage jamais ta clé API. Il faut un petit serveur et des comptes utilisateurs (dossier 3-version-payante-a-vendre de ton ancien pack, à adapter) — demande-moi.
+
+
+SAUVEGARDE EN LIGNE — toutes les données retrouvées à chaque visite, sur tous les appareils
+Sans rien configurer, les données sont déjà conservées dans le navigateur de chaque appareil (elles restent tant que l'utilisateur ne vide pas ses données de site).
+Pour qu'elles suivent l'utilisateur partout, avec un compte (e-mail), il faut un espace de stockage gratuit chez Supabase. Une fois pour toutes, 10 minutes :
+1. Crée un compte sur supabase.com → « New project » (nom : revendo, mot de passe de base au choix, région Europe West).
+2. Menu SQL Editor → colle le contenu du fichier supabase-schema.sql → Run.
+3. Menu Authentication → Providers → Email : laisse activé « Enable email provider » et « Magic link ». Dans Authentication → URL Configuration, mets l'adresse de ton site (https://…) dans « Site URL » et ajoute-la aux « Redirect URLs ».
+4. Menu Project Settings → API : copie « Project URL » et la clé « anon public ».
+5. Dans l'application → Réglages → « Sauvegarde en ligne » : colle l'URL et la clé, mets ton e-mail, « Enregistrer la configuration », puis « Recevoir le lien de connexion ». Ouvre le lien reçu par e-mail : tu es connecté, tout se synchronise.
+Chaque utilisateur se connecte avec son e-mail et ne voit que ses propres données. La configuration (URL + clé publique) est à faire une fois par appareil ; pour l'éviter à tes clients, je peux l'inscrire directement dans le fichier : dis-le-moi.
